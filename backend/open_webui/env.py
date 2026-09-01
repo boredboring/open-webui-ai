@@ -888,8 +888,8 @@ if LICENSE_PUBLIC_KEY:
 # WEBUI Identity
 ####################################
 
-WEBUI_NAME = os.getenv('WEBUI_NAME', 'Open WebUI')
-if WEBUI_NAME != 'Open WebUI':
+WEBUI_NAME = os.getenv('WEBUI_NAME', '实训 AI 平台')
+if WEBUI_NAME != '实训 AI 平台':
     WEBUI_NAME += ' (Open WebUI)'
 
 WEBUI_FAVICON_URL = 'https://openwebui.com/favicon.png'

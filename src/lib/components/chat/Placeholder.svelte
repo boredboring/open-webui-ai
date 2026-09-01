@@ -154,7 +154,7 @@
 								className=" flex items-center "
 							>
 								<span class="line-clamp-1">
-									{models[selectedModelIdx]?.name}
+									{models[selectedModelIdx]?.name?.split(/[-:]/)[0]}：{$i18n.t('Hello, {{name}}', { name: $user?.name })}
 								</span>
 							</Tooltip>
 						{:else}

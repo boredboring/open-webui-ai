@@ -53,6 +53,7 @@
 		getUserTimezone,
 		getWeekday
 	} from '$lib/utils';
+	import { QUICK_PROMPTS, buildQuickPromptText } from '$lib/utils/quickPrompts';
 	import { uploadFile } from '$lib/apis/files';
 	import { generateAutoCompletion } from '$lib/apis';
 	import { deleteFileById } from '$lib/apis/files';
@@ -378,6 +379,10 @@
 			await tick();
 			if (cb) await cb(text);
 		}
+	};
+
+	const insertQuickPrompt = async (prefix: string) => {
+		await setText(buildQuickPromptText(prompt, prefix));
 	};
 
 	export const showStatus = async () => {
@@ -1710,6 +1715,18 @@
 									{/each}
 								</div>
 							{/if}
+
+							<div class="px-2.5 pb-0.5 flex flex-wrap gap-1.5 text-xs">
+								{#each QUICK_PROMPTS as quickPrompt (quickPrompt.id)}
+									<button
+										type="button"
+										class="px-2.5 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+										on:click={() => insertQuickPrompt(quickPrompt.prompt)}
+									>
+										{quickPrompt.label}
+									</button>
+								{/each}
+							</div>
 
 							<div class="px-2">
 								<div

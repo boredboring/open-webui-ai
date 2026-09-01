@@ -1,0 +1,116 @@
+diff --git a/backend/open_webui/env.py b/backend/open_webui/env.py
+index 6c49b4863..225ff20c3 100644
+--- a/backend/open_webui/env.py
++++ b/backend/open_webui/env.py
+@@ -888,8 +888,8 @@ if LICENSE_PUBLIC_KEY:
+ # WEBUI Identity
+ ####################################
+ 
+-WEBUI_NAME = os.getenv('WEBUI_NAME', 'Open WebUI')
+-if WEBUI_NAME != 'Open WebUI':
++WEBUI_NAME = os.getenv('WEBUI_NAME', '实训 AI 平台')
++if WEBUI_NAME != '实训 AI 平台':
+     WEBUI_NAME += ' (Open WebUI)'
+ 
+ WEBUI_FAVICON_URL = 'https://openwebui.com/favicon.png'
+diff --git a/src/lib/components/chat/ChatPlaceholder.svelte b/src/lib/components/chat/ChatPlaceholder.svelte
+index bfd7276ce..475b9d821 100644
+--- a/src/lib/components/chat/ChatPlaceholder.svelte
++++ b/src/lib/components/chat/ChatPlaceholder.svelte
+@@ -88,7 +88,7 @@
+ 			<div>
+ 				<div class=" capitalize line-clamp-1" in:fade={{ duration: 200 }}>
+ 					{#if models[selectedModelIdx]?.name}
+-						{models[selectedModelIdx]?.name}
++						{models[selectedModelIdx]?.name}：{$i18n.t('Hello, {{name}}', { name: $user?.name })}
+ 					{:else}
+ 						{$i18n.t('Hello, {{name}}', { name: $user?.name })}
+ 					{/if}
+diff --git a/src/lib/components/chat/Placeholder.svelte b/src/lib/components/chat/Placeholder.svelte
+index eb7a9ef59..7c94c4cc5 100644
+--- a/src/lib/components/chat/Placeholder.svelte
++++ b/src/lib/components/chat/Placeholder.svelte
+@@ -154,7 +154,7 @@
+ 								className=" flex items-center "
+ 							>
+ 								<span class="line-clamp-1">
+-									{models[selectedModelIdx]?.name}
++									{models[selectedModelIdx]?.name?.split(/[-:]/)[0]}：{$i18n.t('Hello, {{name}}', { name: $user?.name })}
+ 								</span>
+ 							</Tooltip>
+ 						{:else}
+diff --git a/src/lib/constants.ts b/src/lib/constants.ts
+index aacaa9fbc..5669f53bb 100644
+--- a/src/lib/constants.ts
++++ b/src/lib/constants.ts
+@@ -1,7 +1,7 @@
+ import { browser, dev } from '$app/environment';
+ // import { version } from '../../package.json';
+ 
+-export const APP_NAME = 'Open WebUI';
++export const APP_NAME = '实训 AI 平台';
+ 
+ export const WEBUI_HOSTNAME = browser ? (dev ? `${location.hostname}:8080` : ``) : '';
+ export const WEBUI_BASE_URL = browser ? (dev ? `http://${WEBUI_HOSTNAME}` : ``) : ``;
+diff --git a/src/lib/i18n/locales/zh-CN/translation.json b/src/lib/i18n/locales/zh-CN/translation.json
+index 4550279bd..ff8e8f314 100644
+--- a/src/lib/i18n/locales/zh-CN/translation.json
++++ b/src/lib/i18n/locales/zh-CN/translation.json
+@@ -1350,7 +1350,7 @@
+ 	"Headers must be a valid JSON object": "HTTP 标头必须是有效的 JSON 格式",
+ 	"Height": "高度",
+ 	"Height in pixels to compress images to. Leave empty for no compression.": "",
+-	"Hello, {{name}}": "您好，{{name}}",
++	"Hello, {{name}}": "欢迎，{{name}}",
+ 	"Help": "帮助",
+ 	"Help the community discover great models": "帮助社区发现优质模型",
+ 	"Hex Color": "十六进制颜色代码",
+@@ -1367,7 +1367,7 @@
+ 	"Host": "主机",
+ 	"Hourly": "每小时",
+ 	"Hourly Messages": "每小时消息数",
+-	"How can I help you today?": "有什么我能帮您的吗？",
++	"How can I help you today?": "今天想让我帮你做点什么？",
+ 	"How would you rate this response?": "您如何评价这个回答？",
+ 	"HTML": "HTML",
+ 	"http://localhost:8000": "http://localhost:8000",
+@@ -2365,7 +2365,7 @@
+ 	"Selected models define incompatible Chat Variables.": "",
+ 	"semantic": "语义",
+ 	"Send": "发送",
+-	"Send a Message": "输入消息",
++	"Send a Message": "输入消息…",
+ 	"Send events for": "",
+ 	"Send extra JSON parameters with each AUTOMATIC1111 request.": "",
+ 	"Send extra JSON parameters with each image generation request.": "",
+diff --git a/src/lib/i18n/locales/zh-TW/translation.json b/src/lib/i18n/locales/zh-TW/translation.json
+index 7a419048b..20eff36a0 100644
+--- a/src/lib/i18n/locales/zh-TW/translation.json
++++ b/src/lib/i18n/locales/zh-TW/translation.json
+@@ -1350,7 +1350,7 @@
+ 	"Headers must be a valid JSON object": "HTTP 標頭必須是有效的 JSON 格式",
+ 	"Height": "高度",
+ 	"Height in pixels to compress images to. Leave empty for no compression.": "",
+-	"Hello, {{name}}": "您好，{{name}}",
++	"Hello, {{name}}": "歡迎，{{name}}",
+ 	"Help": "說明",
+ 	"Help the community discover great models": "協助社群發現優質模型",
+ 	"Hex Color": "Hex 顏色",
+@@ -1367,7 +1367,7 @@
+ 	"Host": "主機",
+ 	"Hourly": "每小時",
+ 	"Hourly Messages": "每小時訊息數",
+-	"How can I help you today?": "今天我能為您做些什麼？",
++	"How can I help you today?": "今天想讓我幫你做點什麼？",
+ 	"How would you rate this response?": "您如何評價此回應？",
+ 	"HTML": "HTML",
+ 	"http://localhost:8000": "http://localhost:8000",
+@@ -2365,7 +2365,7 @@
+ 	"Selected models define incompatible Chat Variables.": "",
+ 	"semantic": "語義",
+ 	"Send": "傳送",
+-	"Send a Message": "傳送訊息",
++	"Send a Message": "輸入訊息…",
+ 	"Send events for": "",
+ 	"Send extra JSON parameters with each AUTOMATIC1111 request.": "",
+ 	"Send extra JSON parameters with each image generation request.": "",
