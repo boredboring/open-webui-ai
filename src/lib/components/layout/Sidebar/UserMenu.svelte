@@ -15,6 +15,7 @@
 	import DropdownMenu from '$lib/components/common/DropdownMenu.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import UserStatusModal from './UserStatusModal.svelte';
+	import HelpModal from '$lib/components/HelpModal.svelte';
 	import Emoji from '$lib/components/common/Emoji.svelte';
 	import CalendarIcon from './icons/Calendar.svelte';
 	import ClockIcon from './icons/Clock.svelte';
@@ -48,6 +49,7 @@
 	export let showActiveUsers = true;
 
 	let showUserStatusModal = false;
+	let showHelpModal = false;
 	let shiftKey = false;
 
 	const dispatch = createEventDispatcher();
@@ -109,6 +111,8 @@
 		user.set(await getSessionUser(localStorage.token));
 	}}
 />
+
+<HelpModal bind:show={showHelpModal} />
 
 <Dropdown bind:show onOpenChange={handleDropdownChange} {align}>
 	<slot />
@@ -545,6 +549,20 @@
 					<div class=" self-center truncate">{$i18n.t('Admin Panel')}</div>
 				</a>
 			{/if}
+
+			<button
+				class="flex h-[1.6875rem] items-center gap-2 rounded-xl px-2 text-[13px] w-full hover:bg-gray-50/40 dark:hover:bg-gray-800/40 transition cursor-pointer select-none"
+				type="button"
+				on:click={() => {
+					show = false;
+					showHelpModal = true;
+				}}
+			>
+				<div class="self-center">
+					<HelpCircleIcon className="size-3.5" />
+				</div>
+				<div class=" self-center truncate">{$i18n.t('Help')}</div>
+			</button>
 
 			<button
 				class="flex h-[1.6875rem] items-center gap-2 rounded-xl px-2 text-[13px] w-full hover:bg-gray-50/40 dark:hover:bg-gray-800/40 transition cursor-pointer select-none"
