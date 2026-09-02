@@ -23,42 +23,42 @@ Open WebUI 是一个可自托管、可扩展、功能丰富且面向离线的 AI
 
 ### 2.1 前端
 
-| 类别 | 技术 |
-| --- | --- |
-| 框架 | Svelte 5 + SvelteKit 2 |
-| 构建 | Vite 5 |
-| 语言 | TypeScript |
-| 样式 | Tailwind CSS 4 |
-| 富文本编辑 | Tiptap / ProseMirror |
-| 代码编辑器 | CodeMirror |
-| 图表与绘图 | Mermaid、KaTeX、Chart.js、Vega/Vega-Lite |
-| 终端模拟 | xterm.js |
-| 浏览器内 Python | Pyodide |
-| 实时通信 | socket.io-client |
-| 协作编辑 | Yjs / y-prosemirror |
-| 国际化 | i18next |
+| 类别            | 技术                                     |
+| --------------- | ---------------------------------------- |
+| 框架            | Svelte 5 + SvelteKit 2                   |
+| 构建            | Vite 5                                   |
+| 语言            | TypeScript                               |
+| 样式            | Tailwind CSS 4                           |
+| 富文本编辑      | Tiptap / ProseMirror                     |
+| 代码编辑器      | CodeMirror                               |
+| 图表与绘图      | Mermaid、KaTeX、Chart.js、Vega/Vega-Lite |
+| 终端模拟        | xterm.js                                 |
+| 浏览器内 Python | Pyodide                                  |
+| 实时通信        | socket.io-client                         |
+| 协作编辑        | Yjs / y-prosemirror                      |
+| 国际化          | i18next                                  |
 
 前端依赖与脚本统一在 `package.json` 中管理，前端版本号同时是前后端共享的版本来源。
 
 ### 2.2 后端
 
-| 类别 | 技术 |
-| --- | --- |
-| Web 框架 | FastAPI |
-| ASGI 服务器 | Uvicorn |
-| 数据校验 | Pydantic |
-| ORM | SQLAlchemy（异步） |
-| 数据库迁移 | Alembic |
-| 实时通信 | python-socketio |
-| 会话管理 | Starlette Session / starsessions（支持 Redis） |
-| 认证与安全 | PyJWT、Authlib、argon2、bcrypt、cryptography |
-| HTTP 客户端 | httpx、aiohttp、requests |
-| 任务调度 | APScheduler |
-| 代码执行 | RestrictedPython（受限沙箱） |
-| AI 相关 | openai、anthropic、google-genai、langchain、transformers、sentence-transformers、faster-whisper |
-| 检索向量库 | ChromaDB 等 |
-| 工具协议 | mcp |
-| 缓存/队列 | Redis |
+| 类别        | 技术                                                                                            |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| Web 框架    | FastAPI                                                                                         |
+| ASGI 服务器 | Uvicorn                                                                                         |
+| 数据校验    | Pydantic                                                                                        |
+| ORM         | SQLAlchemy（异步）                                                                              |
+| 数据库迁移  | Alembic                                                                                         |
+| 实时通信    | python-socketio                                                                                 |
+| 会话管理    | Starlette Session / starsessions（支持 Redis）                                                  |
+| 认证与安全  | PyJWT、Authlib、argon2、bcrypt、cryptography                                                    |
+| HTTP 客户端 | httpx、aiohttp、requests                                                                        |
+| 任务调度    | APScheduler                                                                                     |
+| 代码执行    | RestrictedPython（受限沙箱）                                                                    |
+| AI 相关     | openai、anthropic、google-genai、langchain、transformers、sentence-transformers、faster-whisper |
+| 检索向量库  | ChromaDB 等                                                                                     |
+| 工具协议    | mcp                                                                                             |
+| 缓存/队列   | Redis                                                                                           |
 
 后端依赖在 `pyproject.toml` 中声明，使用 hatchling 打包，依赖锁定在 `uv.lock`。
 
@@ -110,14 +110,14 @@ flowchart LR
 
 ### 5.1 应用入口与配置
 
-| 文件/目录 | 说明 |
-| --- | --- |
-| `main.py` | FastAPI 应用入口，注册路由、中间件、静态资源与 WebSocket。 |
-| `config.py` | 运行时配置聚合，从环境变量读取并派生各类配置项。 |
-| `env.py` | 环境变量定义与默认值。 |
-| `constants.py` | 常量与错误消息。 |
-| `events.py` | 应用生命周期事件处理。 |
-| `functions.py` / `tasks.py` | 全局函数与后台任务入口。 |
+| 文件/目录                   | 说明                                                       |
+| --------------------------- | ---------------------------------------------------------- |
+| `main.py`                   | FastAPI 应用入口，注册路由、中间件、静态资源与 WebSocket。 |
+| `config.py`                 | 运行时配置聚合，从环境变量读取并派生各类配置项。           |
+| `env.py`                    | 环境变量定义与默认值。                                     |
+| `constants.py`              | 常量与错误消息。                                           |
+| `events.py`                 | 应用生命周期事件处理。                                     |
+| `functions.py` / `tasks.py` | 全局函数与后台任务入口。                                   |
 
 服务启动入口由 `pyproject.toml` 定义：`open-webui = "open_webui:app"`。
 
@@ -125,39 +125,39 @@ flowchart LR
 
 按业务域拆分的 HTTP API 模块，统一挂在 `/api/v1/` 下（另有 `/ollama`、`/openai` 两个模型代理前缀）。
 
-| 路由模块 | 功能 |
-| --- | --- |
-| `chats.py` | 聊天会话与消息管理，是核心对话链路。 |
-| `tasks.py` | 对话补全、标题/标签生成、流式任务控制。 |
-| `models.py` | 模型列表、加载/卸载、模型配置。 |
-| `ollama.py` | Ollama 模型接口代理与兼容层。 |
-| `openai.py` | OpenAI 兼容接口代理（含 DeepSeek 等）。 |
-| `pipelines.py` | Open WebUI Pipelines 管线管理。 |
-| `retrieval.py` | RAG 检索相关接口。 |
-| `knowledge.py` | 知识库管理。 |
-| `files.py` | 文件上传、下载与存储。 |
-| `images.py` | 图像生成与管理。 |
-| `audio.py` | 语音转写与语音合成（STT/TTS）。 |
-| `auths.py` | 登录、注册、OAuth 认证。 |
-| `users.py` | 用户管理。 |
-| `groups.py` | 用户组与权限。 |
-| `scim.py` | SCIM 2.0 自动用户供给。 |
-| `tools.py` | 工具（Tools）定义与管理。 |
-| `functions.py` | 函数（Functions）定义与管理。 |
-| `skills.py` | 技能（Skills）管理。 |
-| `prompts.py` | 提示词模板管理。 |
-| `channels.py` | 频道（Channels）协作空间。 |
-| `notes.py` | 笔记管理。 |
-| `folders.py` | 会话/内容文件夹管理。 |
-| `memories.py` | 持久化记忆管理。 |
-| `automations.py` | 定时自动化任务。 |
-| `calendar.py` | 日历与日程。 |
-| `configs.py` | 系统配置读写。 |
-| `analytics.py` | 用量统计与分析。 |
-| `evaluations.py` | 模型评估（Arena、A/B、ELO）。 |
-| `notifications.py` | 通知。 |
-| `terminals.py` | 终端（Open Terminal）接入。 |
-| `utils.py` | 通用工具接口（下载、OCR 等）。 |
+| 路由模块           | 功能                                    |
+| ------------------ | --------------------------------------- |
+| `chats.py`         | 聊天会话与消息管理，是核心对话链路。    |
+| `tasks.py`         | 对话补全、标题/标签生成、流式任务控制。 |
+| `models.py`        | 模型列表、加载/卸载、模型配置。         |
+| `ollama.py`        | Ollama 模型接口代理与兼容层。           |
+| `openai.py`        | OpenAI 兼容接口代理（含 DeepSeek 等）。 |
+| `pipelines.py`     | Open WebUI Pipelines 管线管理。         |
+| `retrieval.py`     | RAG 检索相关接口。                      |
+| `knowledge.py`     | 知识库管理。                            |
+| `files.py`         | 文件上传、下载与存储。                  |
+| `images.py`        | 图像生成与管理。                        |
+| `audio.py`         | 语音转写与语音合成（STT/TTS）。         |
+| `auths.py`         | 登录、注册、OAuth 认证。                |
+| `users.py`         | 用户管理。                              |
+| `groups.py`        | 用户组与权限。                          |
+| `scim.py`          | SCIM 2.0 自动用户供给。                 |
+| `tools.py`         | 工具（Tools）定义与管理。               |
+| `functions.py`     | 函数（Functions）定义与管理。           |
+| `skills.py`        | 技能（Skills）管理。                    |
+| `prompts.py`       | 提示词模板管理。                        |
+| `channels.py`      | 频道（Channels）协作空间。              |
+| `notes.py`         | 笔记管理。                              |
+| `folders.py`       | 会话/内容文件夹管理。                   |
+| `memories.py`      | 持久化记忆管理。                        |
+| `automations.py`   | 定时自动化任务。                        |
+| `calendar.py`      | 日历与日程。                            |
+| `configs.py`       | 系统配置读写。                          |
+| `analytics.py`     | 用量统计与分析。                        |
+| `evaluations.py`   | 模型评估（Arena、A/B、ELO）。           |
+| `notifications.py` | 通知。                                  |
+| `terminals.py`     | 终端（Open Terminal）接入。             |
+| `utils.py`         | 通用工具接口（下载、OCR 等）。          |
 
 ### 5.3 数据模型层（models/）
 
@@ -185,23 +185,23 @@ SQLAlchemy ORM 实体，映射核心业务对象：
 
 ### 5.5 检索增强 RAG（retrieval/）
 
-| 子模块 | 说明 |
-| --- | --- |
-| `loaders/` | 文档加载与解析，支持 Tika、Docling、Mistral OCR、PaddleOCR-vl、MinerU、YouTube 等。 |
-| `vector/` | 向量库抽象，`vector/dbs/` 下包含 Chroma、Elasticsearch、OpenSearch、Milvus、Qdrant、Weaviate、Pinecone、pgvector、MariaDB Vector、Oracle 23ai、Valkey 等适配器。 |
-| `web/` | 网页搜索接入，内置 30+ 搜索提供方（SearXNG、Bing、Brave、DuckDuckGo、Google PSE、Tavily、Perplexity 等）。 |
-| `models/` | 重排序模型（Reranker）支持，如 ColBERT。 |
+| 子模块     | 说明                                                                                                                                                             |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `loaders/` | 文档加载与解析，支持 Tika、Docling、Mistral OCR、PaddleOCR-vl、MinerU、YouTube 等。                                                                              |
+| `vector/`  | 向量库抽象，`vector/dbs/` 下包含 Chroma、Elasticsearch、OpenSearch、Milvus、Qdrant、Weaviate、Pinecone、pgvector、MariaDB Vector、Oracle 23ai、Valkey 等适配器。 |
+| `web/`     | 网页搜索接入，内置 30+ 搜索提供方（SearXNG、Bing、Brave、DuckDuckGo、Google PSE、Tavily、Perplexity 等）。                                                       |
+| `models/`  | 重排序模型（Reranker）支持，如 ColBERT。                                                                                                                         |
 
 ### 5.6 其他后端模块
 
-| 目录/文件 | 说明 |
-| --- | --- |
-| `internal/db.py` | 数据库会话与连接管理。 |
-| `migrations/` | Alembic 数据库迁移脚本。 |
-| `socket/` | WebSocket 事件处理。 |
-| `storage/` | 存储提供方抽象。 |
-| `tools/` | 内置工具实现与知识库文件系统工具。 |
-| `static/` | 后端内置静态资源（Swagger UI、图标等）。 |
+| 目录/文件        | 说明                                     |
+| ---------------- | ---------------------------------------- |
+| `internal/db.py` | 数据库会话与连接管理。                   |
+| `migrations/`    | Alembic 数据库迁移脚本。                 |
+| `socket/`        | WebSocket 事件处理。                     |
+| `storage/`       | 存储提供方抽象。                         |
+| `tools/`         | 内置工具实现与知识库文件系统工具。       |
+| `static/`        | 后端内置静态资源（Swagger UI、图标等）。 |
 
 ## 6. 前端模块说明
 
@@ -209,22 +209,22 @@ SQLAlchemy ORM 实体，映射核心业务对象：
 
 ### 6.1 路由（routes/）
 
-| 路由 | 说明 |
-| --- | --- |
-| `(app)/home` | 首页 |
-| `(app)/c` | 聊天会话页 |
-| `(app)/workspace` | 工作区（知识库、模型、工具、文档等） |
-| `(app)/admin` | 管理面板（设置、用户、分析等） |
-| `(app)/channels` | 频道 |
-| `(app)/playground` | 模型试玩/评估 |
-| `(app)/notes` | 笔记 |
-| `(app)/folders` | 文件夹 |
-| `(app)/automations` | 自动化任务 |
-| `(app)/calendar` | 日历 |
-| `auth` | 登录/注册 |
-| `s` | 共享内容短链 |
-| `watch` | 频道/直播观看 |
-| `error` | 后端未连接等错误提示页 |
+| 路由                | 说明                                 |
+| ------------------- | ------------------------------------ |
+| `(app)/home`        | 首页                                 |
+| `(app)/c`           | 聊天会话页                           |
+| `(app)/workspace`   | 工作区（知识库、模型、工具、文档等） |
+| `(app)/admin`       | 管理面板（设置、用户、分析等）       |
+| `(app)/channels`    | 频道                                 |
+| `(app)/playground`  | 模型试玩/评估                        |
+| `(app)/notes`       | 笔记                                 |
+| `(app)/folders`     | 文件夹                               |
+| `(app)/automations` | 自动化任务                           |
+| `(app)/calendar`    | 日历                                 |
+| `auth`              | 登录/注册                            |
+| `s`                 | 共享内容短链                         |
+| `watch`             | 频道/直播观看                        |
+| `error`             | 后端未连接等错误提示页               |
 
 ### 6.2 API 封装（lib/apis/）
 
@@ -234,14 +234,14 @@ SQLAlchemy ORM 实体，映射核心业务对象：
 
 可复用 UI 组件，按业务域划分：
 
-| 目录 | 说明 |
-| --- | --- |
-| `chat/` | 聊天相关组件（消息、输入框、附件等） |
-| `common/` | 通用组件（弹窗、表单、文件选择等） |
-| `admin/` | 管理面板组件 |
-| `layout/` | 布局与侧边栏 |
-| `icons/` | 图标 |
-| `channel/`、`workspace/`、`notes/`、`calendar/`、`automations/`、`playground/` | 各业务模块组件 |
+| 目录                                                                           | 说明                                 |
+| ------------------------------------------------------------------------------ | ------------------------------------ |
+| `chat/`                                                                        | 聊天相关组件（消息、输入框、附件等） |
+| `common/`                                                                      | 通用组件（弹窗、表单、文件选择等）   |
+| `admin/`                                                                       | 管理面板组件                         |
+| `layout/`                                                                      | 布局与侧边栏                         |
+| `icons/`                                                                       | 图标                                 |
+| `channel/`、`workspace/`、`notes/`、`calendar/`、`automations/`、`playground/` | 各业务模块组件                       |
 
 ### 6.4 状态与工具
 
@@ -284,19 +284,19 @@ SQLAlchemy ORM 实体，映射核心业务对象：
 
 主要环境变量（完整清单见官方文档或 `backend/open_webui/env.py`）：
 
-| 变量 | 说明 |
-| --- | --- |
-| `WEBUI_SECRET_KEY` | 应用密钥，认证启用时为必需项。 |
-| `WEBUI_AUTH` | 是否启用登录认证。 |
-| `DATA_DIR` | 数据目录（数据库、上传文件、缓存等）。 |
-| `DATABASE_URL` | 关系数据库连接串。 |
-| `VECTOR_DB` | 向量数据库类型（默认 `chroma`）。 |
-| `OLLAMA_BASE_URL` | Ollama 服务地址。 |
-| `OPENAI_API_BASE_URL` | OpenAI 兼容 API 地址（如 DeepSeek）。 |
-| `OPENAI_API_KEY` | OpenAI 兼容 API 密钥。 |
-| `RAG_EMBEDDING_MODEL` | RAG 嵌入模型。 |
-| `CORS_ALLOW_ORIGIN` | 跨域来源（多个用 `;` 分隔）。 |
-| `PORT` / `HOST` | 后端监听端口与地址。 |
+| 变量                  | 说明                                   |
+| --------------------- | -------------------------------------- |
+| `WEBUI_SECRET_KEY`    | 应用密钥，认证启用时为必需项。         |
+| `WEBUI_AUTH`          | 是否启用登录认证。                     |
+| `DATA_DIR`            | 数据目录（数据库、上传文件、缓存等）。 |
+| `DATABASE_URL`        | 关系数据库连接串。                     |
+| `VECTOR_DB`           | 向量数据库类型（默认 `chroma`）。      |
+| `OLLAMA_BASE_URL`     | Ollama 服务地址。                      |
+| `OPENAI_API_BASE_URL` | OpenAI 兼容 API 地址（如 DeepSeek）。  |
+| `OPENAI_API_KEY`      | OpenAI 兼容 API 密钥。                 |
+| `RAG_EMBEDDING_MODEL` | RAG 嵌入模型。                         |
+| `CORS_ALLOW_ORIGIN`   | 跨域来源（多个用 `;` 分隔）。          |
+| `PORT` / `HOST`       | 后端监听端口与地址。                   |
 
 ## 9. 部署与运行
 
