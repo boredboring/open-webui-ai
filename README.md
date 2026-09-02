@@ -1,5 +1,46 @@
 # Open WebUI 👋
 
+> 本项目是基于 Open WebUI v0.11.0 的定制版本，平台名称改为「实训 AI 平台」，并新增了界面文字定制、快捷提示按钮、一键启动脚本等功能。
+
+## 本项目定制说明（实训 AI 平台）
+
+本仓库基于 [Open WebUI](https://github.com/open-webui/open-webui) v0.11.0 定制开发，对接 DeepSeek 等大模型进行对话。
+
+### 已完成的定制修改
+
+- 平台名称：「Open WebUI」→「实训 AI 平台」
+- 欢迎语：「欢迎，用户名」
+- 欢迎副标题：「今天想让我帮你做点什么？」
+- 输入框提示：「输入消息…」
+- 模型名显示：去掉版本后缀，显示为「模型名：欢迎语」
+- 快捷提示按钮：新增「总结内容 / 翻译为中文 / 优化表达」
+- 帮助接口：新增 `GET /api/v1/help`
+- 启动脚本：新增 `start-dev.bat` 等一键启动脚本
+
+### 环境要求
+
+- Python 3.11 或 3.12（conda 环境 `openwebui`）
+- Node.js 18 ~ 22
+- DeepSeek API Key
+
+### 快速启动
+
+- 一键启动：双击 `start-dev.bat`
+- 手动启动：后端 `uvicorn open_webui.main:app --host 0.0.0.0 --port 8080 --reload`，前端 `npm run dev:fast`
+- 浏览器访问 http://localhost:5173
+
+### 连接 DeepSeek
+
+管理面板 → 设置 → 连接 → OpenAI API，URL `https://api.deepseek.com`，Key `sk-...`。
+
+### 相关文档
+
+- [docs/项目说明文档.md](docs/项目说明文档.md)
+- [docs/architecture.md](docs/architecture.md)
+- [docs/ui-text-changes.diff](docs/ui-text-changes.diff)
+
+---
+
 ![GitHub stars](https://img.shields.io/github/stars/open-webui/open-webui?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/open-webui/open-webui?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/open-webui/open-webui?style=social)
