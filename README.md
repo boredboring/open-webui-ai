@@ -73,7 +73,7 @@
 
 ### 相关文档
 
-- [docs/项目说明文档.md](docs/项目说明文档.md)
+- [docs/project-overview.md](docs/project-overview.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/ui-text-changes.diff](docs/ui-text-changes.diff)
 
