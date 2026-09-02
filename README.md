@@ -17,17 +17,55 @@
 - 帮助接口：新增 `GET /api/v1/help`
 - 启动脚本：新增 `start-dev.bat` 等一键启动脚本
 
-### 环境要求
+### 多人协作开发 · 环境统一配置
 
-- Python 3.11 或 3.12（conda 环境 `openwebui`）
-- Node.js 18 ~ 22
-- DeepSeek API Key
+为保证在不同电脑上都能直接运行，请统一使用以下环境。
 
-### 快速启动
+#### 环境要求（统一）
 
-- 一键启动：双击 `start-dev.bat`
-- 手动启动：后端 `uvicorn open_webui.main:app --host 0.0.0.0 --port 8080 --reload`，前端 `npm run dev:fast`
+- Python 3.11 或 3.12
+- Node.js 18 ~ 22（推荐 22 LTS）
+- npm
+- conda（Miniconda 或 Anaconda）
+- DeepSeek API Key（每人单独申请，不需共享）
+
+#### 一次性环境搭建
+
+1. 安装 Miniconda：https://docs.conda.io/en/latest/miniconda.html
+2. 创建统一名称的环境：
+
+   ```bash
+   conda create -n openwebui python=3.11
+   conda activate openwebui
+   ```
+
+3. 安装后端依赖：
+
+   ```bash
+   pip install -r backend/requirements.txt
+   ```
+
+4. 安装前端依赖：
+
+   ```bash
+   npm install
+   ```
+
+   > 若 Node.js 版本超过 22，会因项目 `engines` 限制报错，此时改用 `npm install --engine-strict=false`；推荐统一使用 Node 22 LTS 以保持一致。
+
+#### 启动（所有机器一致）
+
+- 一键启动：双击根目录的 `start-dev.bat`（自动打开前后端两个窗口）
+- 或分别启动：
+  - 后端：`backend/start-backend.bat`（内部执行 `uvicorn open_webui.main:app --port 8080 --reload`）
+  - 前端：`start-frontend.bat`（内部执行 `npm run dev:fast`）
 - 浏览器访问 http://localhost:5173
+
+#### 统一约定
+
+- 后端端口 8080，前端端口 5173
+- `WEBUI_SECRET_KEY` 已在后端启动脚本中统一设置（本地开发用）
+- 模型接入统一使用 DeepSeek（OpenAI 兼容），各人用自己的 Key
 
 ### 连接 DeepSeek
 
