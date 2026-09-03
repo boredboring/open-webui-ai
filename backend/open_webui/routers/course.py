@@ -25,8 +25,10 @@ from typing import Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, Request, UploadFile
 from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
+from starlette.datastructures import Headers
 
 from open_webui.internal.db import get_async_session
+from open_webui.models.files import Files
 from open_webui.models.knowledge import Knowledges
 from open_webui.routers.files import upload_file_handler
 from open_webui.utils.auth import get_verified_user
@@ -163,8 +165,12 @@ async def import_corpus_files(
             continue
         try:
             content = target.read_bytes()
-            upload = UploadFile(file=BytesIO(content), filename=target.name)
-            await upload_file_handler(
+            upload = UploadFile(
+                file=BytesIO(content),
+                filename=target.name,
+                headers=Headers({"content-type": "text/markdown"}),
+            )
+            result = await upload_file_handler(
                 request=request,
                 file=upload,
                 metadata={"knowledge_id": form_data.knowledge_id},
@@ -173,7 +179,25 @@ async def import_corpus_files(
                 user=user,
                 db=db,
             )
-            imported.append({"path": posix})
+            file_id = result.get("id") if isinstance(result, dict) else result.id
+
+            # upload_file_handler can swallow processing errors and still return
+            # {"status": True}; verify the durable file status and KB link here.
+            db_file = await Files.get_file_by_id(id=file_id)
+            linked = await Knowledges.has_file(
+                knowledge_id=form_data.knowledge_id,
+                file_id=file_id,
+            )
+            status = ((db_file.data or {}).get("status") if db_file and db_file.data else None)
+            if status == "completed" and linked:
+                imported.append({"path": posix})
+            else:
+                error = (
+                    (db_file.data or {}).get("error")
+                    if db_file and db_file.data
+                    else "文件处理未完成或未关联知识库"
+                )
+                failed.append({"path": posix, "error": str(error or "处理状态未知")[:500]})
         except Exception as exc:
             detail = str(getattr(exc, "detail", "") or exc)
             failed.append({"path": posix, "error": detail[:500]})

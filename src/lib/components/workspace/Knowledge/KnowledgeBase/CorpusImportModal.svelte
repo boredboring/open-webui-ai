@@ -99,7 +99,11 @@
 			const failedCount = result?.failed?.length ?? 0;
 			toast.success(`导入完成：成功 ${importedCount} 个，跳过 ${skippedCount} 个`);
 			if (failedCount > 0) {
-				toast.error(`导入失败 ${failedCount} 个，请在控制台查看明细`);
+				const samples = (result?.failed ?? [])
+					.slice(0, 3)
+					.map((item) => `${item.path}: ${item.error}`)
+					.join('；');
+				toast.error(`导入失败 ${failedCount} 个，${samples}`);
 			}
 			dispatch('imported', result);
 			show = false;
