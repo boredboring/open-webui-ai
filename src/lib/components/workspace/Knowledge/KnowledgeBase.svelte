@@ -58,6 +58,7 @@
 
 	import AddContentMenu from './KnowledgeBase/AddContentMenu.svelte';
 	import AddTextContentModal from './KnowledgeBase/AddTextContentModal.svelte';
+	import CorpusImportModal from './KnowledgeBase/CorpusImportModal.svelte';
 	import NewDirectoryModal from './KnowledgeBase/NewDirectoryModal.svelte';
 	import KnowledgeBreadcrumbs from './KnowledgeBase/KnowledgeBreadcrumbs.svelte';
 
@@ -84,6 +85,7 @@
 
 	let showAddWebpageModal = false;
 	let showAddTextContentModal = false;
+	let showCorpusImportModal = false;
 	let showNewDirectoryModal = false;
 
 	let showSyncConfirmModal = false;
@@ -1183,6 +1185,17 @@
 	}}
 />
 
+{#if knowledge}
+	<CorpusImportModal
+		bind:show={showCorpusImportModal}
+		knowledgeId={knowledge.id}
+		knowledgeName={knowledge.name}
+		on:imported={() => {
+			init();
+		}}
+	/>
+{/if}
+
 <NewDirectoryModal
 	bind:show={showNewDirectoryModal}
 	on:submit={(e) => {
@@ -1446,6 +1459,8 @@
 									onUpload={(data) => {
 										if (data.type === 'directory') {
 											uploadDirectoryHandler();
+										} else if (data.type === 'corpus') {
+											showCorpusImportModal = true;
 										} else if (data.type === 'new_directory') {
 											showNewDirectoryModal = true;
 										} else if (data.type === 'web') {

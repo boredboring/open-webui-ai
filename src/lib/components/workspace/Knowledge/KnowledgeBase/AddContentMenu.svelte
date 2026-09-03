@@ -7,6 +7,7 @@
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import ArrowUpCircle from '$lib/components/icons/ArrowUpCircle.svelte';
 	import BarsArrowUp from '$lib/components/icons/BarsArrowUp.svelte';
+	import Database from '$lib/components/icons/Database.svelte';
 	import FolderOpen from '$lib/components/icons/FolderOpen.svelte';
 	import NewFolderAlt from '$lib/components/icons/NewFolderAlt.svelte';
 	import ArrowPath from '$lib/components/icons/ArrowPath.svelte';
@@ -89,6 +90,17 @@
 			>
 				<FolderOpen strokeWidth="2" />
 				<div class="flex items-center">{$i18n.t('Upload directory')}</div>
+			</button>
+
+			<button
+				class="select-none flex h-[1.6875rem] w-full cursor-pointer items-center gap-2 rounded-xl bg-transparent px-2 text-xs hover:text-gray-900 dark:hover:text-gray-100"
+				on:click={() => {
+					onUpload({ type: 'corpus' });
+					show = false;
+				}}
+			>
+				<Database strokeWidth="2" />
+				<div class="flex items-center">从课程语料导入</div>
 			</button>
 
 			<Tooltip

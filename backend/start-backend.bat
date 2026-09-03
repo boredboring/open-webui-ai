@@ -3,6 +3,7 @@ rem Backend: activate the shared conda environment and start FastAPI on port 808
 cd /d "%~dp0"
 
 set "FRONTEND_BUILD_DIR=%~dp0..\static"
+set "COURSE_CORPUS_DIR=%~dp0..\data\corpus"
 set "WEBUI_SECRET_KEY=b8e1c94f6d2a7e3f0c5d8a1b4e7f9c2d"
 
 rem Activate the shared conda environment (see README for setup)

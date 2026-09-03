@@ -311,3 +311,8 @@ cypress/videos
 cypress/screenshots
 .vscode/settings.json
 .cptr
+
+# 课程原始资料（体积大，不入库；data/corpus 转换结果需要入库）
+/data/PPT/
+/data/习题/
+/data/参考书籍/
