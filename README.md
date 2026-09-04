@@ -71,6 +71,29 @@
 
 管理面板 → 设置 → 连接 → OpenAI API，URL `https://api.deepseek.com`，Key `sk-...`。
 
+### 课程 AI 助教（数据结构）
+
+课程专属 AI 助教的基础设计与提示词已完成，协作者可按以下方式测试。
+
+已完成文档：
+
+- 接口约定：[docs/interface-agreement.md](docs/interface-agreement.md)
+- 课程范围：[docs/prompts/ds-course-scope.md](docs/prompts/ds-course-scope.md)
+- 模型创建方式与字段：[docs/prompts/ds-assistant-model-notes.md](docs/prompts/ds-assistant-model-notes.md)
+- 系统提示词结构设计：[docs/prompts/ds-assistant-system-prompt-design.md](docs/prompts/ds-assistant-system-prompt-design.md)
+- 系统提示词版本索引：[docs/prompts/ds-assistant-system-prompt.md](docs/prompts/ds-assistant-system-prompt.md)（当前最新 v0.3）
+- 提示词验收用例：[docs/testing/assistant-prompt-cases.md](docs/testing/assistant-prompt-cases.md)
+
+测试步骤：
+
+1. 启动前后端，并按上文连接 DeepSeek。
+2. 进入 Workspace → Models → 新建模型，名称为「数据结构 AI 助教」，Model ID 手动填 `ds-assistant`，基础模型选 DeepSeek。
+3. 打开 `docs/prompts/ds-assistant-system-prompt-v0.3.md`，复制代码块中的内容，粘贴到 System Prompt 并保存。
+4. 按 `docs/testing/assistant-prompt-cases.md` 中的 T01–T14 逐条测试，记录通过/失败。
+5. 涉及抽题或练习时，可结合已开发的题目抽取工具进行联调。
+
+提示词版本说明：每个版本单独成文件（`ds-assistant-system-prompt-v0.x.md`），索引文件 `ds-assistant-system-prompt.md` 始终指向最新版本。
+
 ### 相关文档
 
 - [docs/project-overview.md](docs/project-overview.md)
