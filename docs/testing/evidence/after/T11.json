@@ -1,0 +1,25 @@
+{
+  "phase": "after",
+  "case_id": "T11",
+  "category": "练习题生成",
+  "input": "请调用抽题工具给我生成第 3 章的 5 道选择题用于自测，先不要附答案和解析。",
+  "http_status": 200,
+  "elapsed_s": 5.5,
+  "output": "我已调用抽题工具，但题库中第 3 章当前实际只返回了 **2 道选择题**（未达到你要求的 5 道），题目如下，请你先作答，暂不附答案与解析。\n\n---\n\n**第 1 题**\n\n用一维数组实现循环队列时，通常少用一个存储单元来区分队空与队满。若队头指针 front 指向队头元素、队尾指针 rear 指向队尾元素的下一个位置，则队满的条件是（　）。\n\nA. front == rear  \nB. (rear+1) % maxSize == front  \nC. rear == front+1  \nD. (rear-1) % maxSize == front\n\n---\n\n**第 2 题**\n\n栈的特点是（　）。\n\nA. 先进先出  \nB. 后进先出  \nC. 随机存取  \nD. 只允许在一端进、另一端出\n\n---\n\n请你按顺序作答（例如：第 1 题选 B、第 2 题选 B），提交后我会为你判分并给出解析。如果需要更多题目，我也可以再尝试抽取其他章节或其他题型。",
+  "tool_trace": [
+    {
+      "step": 0,
+      "name": "ds_random_quiz",
+      "arguments": "{\"chapter\": \"第3章\", \"question_count\": 5, \"question_type\": \"choice\", \"include_answer\": false}",
+      "result": "{\"ok\": true, \"data\": {\"chapter\": \"第3章 栈、队列和数组\", \"question_count\": 2, \"questions\": [{\"id\": \"ch03_002\", \"type\": \"choice\", \"difficulty\": \"medium\", \"stem\": \"用一维数组实现循环队列时，通常少用一个存储单元来区分队空与队满。若队头指针 front 指向队头元素、队尾指针 rear 指向队尾元素的下一个位置，则队满的条件是（　）。\", \"options\": [\"A. front == rear\", \"B. (rear+1) % maxSize == front\", \"C. rear == front+1\", \"D. (rear-1) % maxSize == front\"]}, {\"id\": \"ch03_001\", \"type\": \"choice\", \"difficulty\": \"easy\", \"stem\": \"栈的特点是（　）。\", \"options\": [\"A. 先进先出\", \"B. 后进先出\", \"C. 随机存取\", \"D. 只允许在一端进、另一端出\"]}], \"note\": \"请逐题作答。判分时调用 ds_grade_quiz，把上面的 questions 原样传回，并按顺序给出答案数组。\"}}"
+    }
+  ],
+  "response_citations": [],
+  "retrieved_sources": [],
+  "chat_id": "12cde050-228d-4e3b-82aa-93d38ecf0985",
+  "attached_kb": {
+    "id": "628b5a40-8b1d-434d-96e7-600cf6b7d643",
+    "name": "数据结构课程知识库(kb_ds_001)",
+    "type": "collection"
+  }
+}

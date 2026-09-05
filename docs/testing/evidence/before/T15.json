@@ -1,0 +1,14 @@
+{
+  "phase": "before",
+  "case_id": "T15",
+  "category": "错误输入/异常",
+  "input": "asdfqwer1234！@#￥%……&*（）zzz",
+  "http_status": 200,
+  "elapsed_s": 2.5,
+  "output": "你好！看起来你发送的内容是一些随机的字符，似乎不是具体的问题或题目。😊\n\n我目前可以帮你完成**数据结构**相关的学习任务，比如：\n\n- **按章节随机抽题自测**（选择 / 判断 / 填空）\n- **对客观题答案自动判分**并给出解析与总分\n\n例如你可以这样使用：\n\n> 帮我抽 5 道「栈」的选择题\n\n> 我的答案是 A、B、C、D，请判分\n\n请问你实际想做什么呢？是想抽一套题来练习，还是有其他需求？请告诉我，我来帮你～",
+  "tool_trace": [],
+  "response_citations": [],
+  "retrieved_sources": [],
+  "chat_id": "2c12cb27-97d2-4813-8d8f-b0bdd8f536c6",
+  "attached_kb": null
+}

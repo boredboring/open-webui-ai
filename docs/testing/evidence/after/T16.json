@@ -1,0 +1,25 @@
+{
+  "phase": "after",
+  "case_id": "T16",
+  "category": "错误输入/异常",
+  "input": "请用抽题工具从第 9 章随机抽 3 道题。",
+  "http_status": 200,
+  "elapsed_s": 17.6,
+  "output": "抽题工具提示“未找到该章节”。原因是本课程范围仅覆盖第 1 章到第 8 章，没有第 9 章内容，所以无法从第 9 章抽题。\n\n你可以从下面任意一章抽取，我来帮你出题：\n- 第 1 章 绪论\n- 第 2 章 线性表\n- 第 3 章 栈、队列与数组\n- 第 4 章 串\n- 第 5 章 树与二叉树\n- 第 6 章 图\n- 第 7 章 查找\n- 第 8 章 排序\n\n也可以直接告诉我要抽的题型（选择/判断/填空/全部）和数量。请问你想从哪一章开始练习？",
+  "tool_trace": [
+    {
+      "step": 0,
+      "name": "ds_random_quiz",
+      "arguments": "{\"chapter\": \"第9章\", \"question_count\": 3}",
+      "result": "{\"ok\": false, \"error\": {\"code\": \"INVALID_CHAPTER\", \"message\": \"未找到该章节。请使用“第1章~第8章”、数字 1~8、或章节主题词（如“栈”“二叉树”“排序”）。\"}}"
+    }
+  ],
+  "response_citations": [],
+  "retrieved_sources": [],
+  "chat_id": "eacb698a-f8d2-4f3e-99d4-9b4a16b4b1ee",
+  "attached_kb": {
+    "id": "628b5a40-8b1d-434d-96e7-600cf6b7d643",
+    "name": "数据结构课程知识库(kb_ds_001)",
+    "type": "collection"
+  }
+}

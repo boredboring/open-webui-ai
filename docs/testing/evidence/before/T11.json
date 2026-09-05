@@ -1,0 +1,27 @@
+{
+  "phase": "before",
+  "case_id": "T11",
+  "category": "练习题生成",
+  "input": "请调用抽题工具给我生成第 3 章的 5 道选择题用于自测，先不要附答案和解析。",
+  "http_status": 200,
+  "elapsed_s": 7.8,
+  "output": "两次尝试后，系统第3章题库目前只能返回 **2 道选择题**（可能该章节的抽题池暂时只匹配到这2道）。已按您的要求**不含答案与解析**，现将题目列出供自测：\n\n---\n\n**第3章 栈、队列和数组 · 选择题自测**\n\n**1.（易）** 栈的特点是（　）。\n- A. 先进先出\n- B. 后进先出\n- C. 随机存取\n- D. 只允许在一端进、另一端出\n\n**2.（中）** 用一维数组实现循环队列时，通常少用一个存储单元来区分队空与队满。若队头指针 `front` 指向队头元素、队尾指针 `rear` 指向队尾元素的下一个位置，则队满的条件是（　）。\n- A. front == rear\n- B. (rear+1) % maxSize == front\n- C. rear == front+1\n- D. (rear-1) % maxSize == front\n\n---\n\n请先自行作答，告诉我您的答案（按顺序，例如 `[\"B\",\"B\"]` 或 \"B B\"）。之后我可以帮您调用判分工具给出解析与总分。\n\n如需更多题目，也可以告诉我：换用**判断/填空题型**、换**章节**、或调整**难度**，我再帮您抽取。您看要怎么处理？",
+  "tool_trace": [
+    {
+      "step": 0,
+      "name": "ds_random_quiz",
+      "arguments": "{\"chapter\": \"第3章\", \"question_count\": 5, \"question_type\": \"choice\", \"include_answer\": false}",
+      "result": "{\"ok\": true, \"data\": {\"chapter\": \"第3章 栈、队列和数组\", \"question_count\": 2, \"questions\": [{\"id\": \"ch03_001\", \"type\": \"choice\", \"difficulty\": \"easy\", \"stem\": \"栈的特点是（　）。\", \"options\": [\"A. 先进先出\", \"B. 后进先出\", \"C. 随机存取\", \"D. 只允许在一端进、另一端出\"]}, {\"id\": \"ch03_002\", \"type\": \"choice\", \"difficulty\": \"medium\", \"stem\": \"用一维数组实现循环队列时，通常少用一个存储单元来区分队空与队满。若队头指针 front 指向队头元素、队尾指针 rear 指向队尾元素的下一个位置，则队满的条件是（　）。\", \"options\": [\"A. front == rear\", \"B. (rear+1) % maxSize == front\", \"C. rear == front+1\", \"D. (rear-1) % maxSize == front\"]}], \"note\": \"请逐题作答。判分时调用 ds_grade_quiz，把上面的 questions 原样传回，并按顺序给出答案数组。\"}}"
+    },
+    {
+      "step": 1,
+      "name": "ds_random_quiz",
+      "arguments": "{\"chapter\": \"第3章\", \"include_answer\": false, \"question_count\": 5, \"question_type\": \"choice\", \"difficulty\": \"all\"}",
+      "result": "{\"ok\": true, \"data\": {\"chapter\": \"第3章 栈、队列和数组\", \"question_count\": 2, \"questions\": [{\"id\": \"ch03_001\", \"type\": \"choice\", \"difficulty\": \"easy\", \"stem\": \"栈的特点是（　）。\", \"options\": [\"A. 先进先出\", \"B. 后进先出\", \"C. 随机存取\", \"D. 只允许在一端进、另一端出\"]}, {\"id\": \"ch03_002\", \"type\": \"choice\", \"difficulty\": \"medium\", \"stem\": \"用一维数组实现循环队列时，通常少用一个存储单元来区分队空与队满。若队头指针 front 指向队头元素、队尾指针 rear 指向队尾元素的下一个位置，则队满的条件是（　）。\", \"options\": [\"A. front == rear\", \"B. (rear+1) % maxSize == front\", \"C. rear == front+1\", \"D. (rear-1) % maxSize == front\"]}], \"note\": \"请逐题作答。判分时调用 ds_grade_quiz，把上面的 questions 原样传回，并按顺序给出答案数组。\"}}"
+    }
+  ],
+  "response_citations": [],
+  "retrieved_sources": [],
+  "chat_id": "fe312af4-1440-4d80-a21a-03398772a261",
+  "attached_kb": null
+}
