@@ -27,7 +27,3 @@
 - **课程语料库 / 扩展工具**：知识库与自定义扩展功能的直接产物。
 - **测试用例与评测**：功能正确性与优化前后对比的验证依据。
 
-## 3. 待补事项
-
-- 组员A（知识库，Git 作者 `silkeobey`）的 Codex 交互记录尚未单独提交至 [codex/](codex/) 目录。
-- 测试负责人朱宝龙声明的测试交付物（`eval_cases.json`、`test_cases_ds.csv`、`test-report-ds.md`、`run_eval.py`、`evidence/`）需提交至 `codex/testing` 分支后评审合并。
