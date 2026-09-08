@@ -1,0 +1,98 @@
+[
+  {
+    "case_id": "T01",
+    "status": 200,
+    "elapsed_s": 8.3,
+    "output_len": 1615
+  },
+  {
+    "case_id": "T02",
+    "status": 200,
+    "elapsed_s": 5.9,
+    "output_len": 982
+  },
+  {
+    "case_id": "T03",
+    "status": 200,
+    "elapsed_s": 19.6,
+    "output_len": 2286
+  },
+  {
+    "case_id": "T04",
+    "status": 200,
+    "elapsed_s": 6.7,
+    "output_len": 1090
+  },
+  {
+    "case_id": "T05",
+    "status": 200,
+    "elapsed_s": 5.8,
+    "output_len": 648
+  },
+  {
+    "case_id": "T06",
+    "status": 200,
+    "elapsed_s": 19.0,
+    "output_len": 2093
+  },
+  {
+    "case_id": "T07",
+    "status": 200,
+    "elapsed_s": 11.0,
+    "output_len": 2011
+  },
+  {
+    "case_id": "T08",
+    "status": 200,
+    "elapsed_s": 8.4,
+    "output_len": 1475
+  },
+  {
+    "case_id": "T09",
+    "status": 200,
+    "elapsed_s": 27.2,
+    "output_len": 1881
+  },
+  {
+    "case_id": "T10",
+    "status": 200,
+    "elapsed_s": 35.0,
+    "output_len": 308
+  },
+  {
+    "case_id": "T11",
+    "status": 200,
+    "elapsed_s": 7.8,
+    "output_len": 519
+  },
+  {
+    "case_id": "T12",
+    "status": 200,
+    "elapsed_s": 16.1,
+    "output_len": 728
+  },
+  {
+    "case_id": "T13",
+    "status": 200,
+    "elapsed_s": 4.0,
+    "output_len": 676
+  },
+  {
+    "case_id": "T14",
+    "status": 200,
+    "elapsed_s": 4.2,
+    "output_len": 494
+  },
+  {
+    "case_id": "T15",
+    "status": 200,
+    "elapsed_s": 2.5,
+    "output_len": 213
+  },
+  {
+    "case_id": "T16",
+    "status": 200,
+    "elapsed_s": 3.1,
+    "output_len": 220
+  }
+]

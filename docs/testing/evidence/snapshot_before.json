@@ -1,0 +1,22 @@
+{
+  "phase": "before",
+  "time": "2026-09-05 11:39:26",
+  "knowledge": null,
+  "config": {
+    "rag.chunk_size": 500,
+    "rag.chunk_overlap": 50,
+    "rag.top_k": 5,
+    "rag.enable_hybrid_search": true,
+    "rag.embedding_model": "D:\\open-webui-ai\\backend\\data\\embed_models\\all-MiniLM-L6-v2"
+  },
+  "prompt_version": "无（默认助手）",
+  "model_meta": {
+    "has_system_prompt": false,
+    "system_prompt_source": null,
+    "knowledge": null,
+    "toolIds": [
+      "ds_quiz_tool"
+    ],
+    "params_keys": []
+  }
+}

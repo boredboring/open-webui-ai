@@ -1,0 +1,29 @@
+{
+  "phase": "after",
+  "time": "2026-09-05 11:05:41",
+  "knowledge": {
+    "id": "628b5a40-8b1d-434d-96e7-600cf6b7d643",
+    "name": "数据结构课程知识库(kb_ds_001)"
+  },
+  "config": {
+    "rag.chunk_size": 500,
+    "rag.chunk_overlap": 50,
+    "rag.top_k": 5,
+    "rag.enable_hybrid_search": true,
+    "rag.embedding_model": "D:\\open-webui-ai\\backend\\data\\embed_models\\all-MiniLM-L6-v2"
+  },
+  "model_meta": {
+    "has_system_prompt": true,
+    "prompt_head": "# 一、角色与身份\n\n你是《数据结构》课程的 AI 助教，主要面向本科学生，任务是帮助学生理解知识点、复习课程内容并完成",
+    "knowledge": [
+      {
+        "id": "628b5a40-8b1d-434d-96e7-600cf6b7d643",
+        "name": "数据结构课程知识库(kb_ds_001)"
+      }
+    ],
+    "toolIds": [
+      "ds_quiz_tool"
+    ]
+  },
+  "prompt_version": "v0.3"
+}

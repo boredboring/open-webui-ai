@@ -1,0 +1,21 @@
+{
+  "phase": "before",
+  "case_id": "T16",
+  "category": "错误输入/异常",
+  "input": "请用抽题工具从第 9 章随机抽 3 道题。",
+  "http_status": 200,
+  "elapsed_s": 3.1,
+  "output": "我尝试调用抽题工具，但返回了错误提示：\n\n> 未找到该章节。请使用“第1章~第8章”、数字 1~8、或章节主题词（如“栈”“二叉树”“排序”）。\n\n也就是说，这个工具目前只支持 **第1章 ~ 第8章** 的抽题，**没有第9章**。\n\n请问你想怎么调整呢？可以：\n1. 换一个具体章节，比如「第7章」或「排序」；\n2. 或者告诉我第9章对应的主题词（比如如果是“图”或“查找”），我按主题来抽 3 道题。\n\n你希望抽哪个章节/主题的题呢？",
+  "tool_trace": [
+    {
+      "step": 0,
+      "name": "ds_random_quiz",
+      "arguments": "{\"chapter\": \"第9章\", \"question_count\": 3}",
+      "result": "{\"ok\": false, \"error\": {\"code\": \"INVALID_CHAPTER\", \"message\": \"未找到该章节。请使用“第1章~第8章”、数字 1~8、或章节主题词（如“栈”“二叉树”“排序”）。\"}}"
+    }
+  ],
+  "response_citations": [],
+  "retrieved_sources": [],
+  "chat_id": "20fdeff7-b1ec-479a-b743-17c669f40227",
+  "attached_kb": null
+}
