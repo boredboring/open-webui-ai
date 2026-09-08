@@ -2,6 +2,8 @@
 
 > 本项目是基于 Open WebUI v0.11.0 的定制版本，平台名称改为「实训 AI 平台」，并新增了界面文字定制、快捷提示按钮、一键启动脚本等功能。
 
+> 📦 **项目交付物**：全部交付物位于 [`docs/delivery/`](docs/delivery/) 目录，包含 Git 提交记录、Codex 交互记录、项目总结报告（`.md` / `.tex` / `.pdf`）等；完整清单见 [交付物说明](docs/delivery/README.md)。
+
 ## 本项目定制说明（实训 AI 平台）
 
 本仓库基于 [Open WebUI](https://github.com/open-webui/open-webui) v0.11.0 定制开发，对接 DeepSeek 等大模型进行对话。
