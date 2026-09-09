@@ -71,6 +71,14 @@
 - 后端使用全局 conda 环境 `openwebui`，不受文件夹移动影响；但 `data/corpus`、`backend/data` 等数据目录需随项目一起移动。
 - 首次搭建仍须按上文「一次性环境搭建」完成后端 `pip install` 与前端 `npm install`。
 
+#### 前端缓存异常处理（500 / ERR_CACHE_READ_FAILURE）
+
+若前端出现 `500: Internal Error`、Vite 控制台卡住、或浏览器报 `net::ERR_CACHE_READ_FAILURE`，通常是 Vite 依赖预构建缓存或浏览器缓存失效导致，按以下顺序处理：
+
+1. 清浏览器缓存后强制刷新：Ctrl+Shift+Delete → 清除「缓存的图像和文件」→ Ctrl+Shift+R。
+2. 使用清理脚本重启前端：`npm run dev:clean`（会先删除 `node_modules/.vite` 再启动 Vite）。
+3. 修改或重装依赖后，先关闭 dev server，执行一次 `npm run dev:clean` 再启动，避免旧缓存与依赖不一致。
+
 #### 统一约定
 
 - 后端端口 8080，前端端口 5173

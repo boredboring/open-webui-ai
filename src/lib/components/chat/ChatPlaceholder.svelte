@@ -10,6 +10,7 @@
 
 	import Suggestions from './Suggestions.svelte';
 	import { sanitizeResponseContent } from '$lib/utils';
+	import { getEffectivePromptSuggestions } from '$lib/utils/prompt-suggestions';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import EyeSlash from '$lib/components/icons/EyeSlash.svelte';
 
@@ -135,10 +136,14 @@
 		<div class=" w-full" in:fade={{ duration: 200, delay: 300 }}>
 			<Suggestions
 				className="grid grid-cols-2"
-				suggestionPrompts={atSelectedModel?.info?.meta?.suggestion_prompts ??
-					models[selectedModelIdx]?.info?.meta?.suggestion_prompts ??
-					$config?.default_prompt_suggestions ??
-					[]}
+				suggestionPrompts={getEffectivePromptSuggestions({
+					model: models[selectedModelIdx] ?? atSelectedModel,
+					configured:
+						atSelectedModel?.info?.meta?.suggestion_prompts ??
+						models[selectedModelIdx]?.info?.meta?.suggestion_prompts,
+					fallback: $config?.default_prompt_suggestions,
+					language: $i18n.language
+				})}
 				{onSelect}
 			/>
 		</div>
