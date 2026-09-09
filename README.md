@@ -63,6 +63,14 @@
   - 前端：`start-frontend.bat`（内部执行 `npm run dev:fast`）
 - 浏览器访问 http://localhost:5173
 
+#### 本地部署提醒（移动项目 / 换电脑 / 重新克隆）
+
+- 移动项目到新文件夹、换电脑或重新克隆后，前端依赖需要**重新安装**：在新目录执行 `npm install`（Node.js 超过 22 时用 `npm install --engine-strict=false`）。
+- 不要直接复制 `node_modules`：其中包含 esbuild、`@tailwindcss/oxide` 等平台相关的原生二进制，复制过去经常失效。
+- 未安装前端依赖就运行 `start-frontend.bat` 会报 `vite 不是内部或外部命令`；脚本已内置检测，会提示先执行 `npm install`。
+- 后端使用全局 conda 环境 `openwebui`，不受文件夹移动影响；但 `data/corpus`、`backend/data` 等数据目录需随项目一起移动。
+- 首次搭建仍须按上文「一次性环境搭建」完成后端 `pip install` 与前端 `npm install`。
+
 #### 统一约定
 
 - 后端端口 8080，前端端口 5173
